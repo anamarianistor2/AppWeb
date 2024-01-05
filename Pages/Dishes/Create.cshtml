@@ -1,0 +1,82 @@
+﻿@page
+@model AppWeb.Pages.Dishes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Menu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Menu.DishName" class="control-label"></label>
+                <input asp-for="Menu.DishName" class="form-control" />
+                <span asp-validation-for="Menu.DishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.Price" class="control-label"></label>
+                <input asp-for="Menu.Price" class="form-control" />
+                <span asp-validation-for="Menu.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.DateAdded" class="control-label"></label>
+                <input asp-for="Menu.DateAdded" class="form-control" />
+                <span asp-validation-for="Menu.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.ChefID" class="control-label">Chef Name</label>
+                <select asp-for="Menu.ChefID" class="form-control" asp-items="ViewBag.ChefID">
+                </select>
+                <span asp-validation-for="Menu.ChefID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menu.LocationID" class="control-label">Location</label>
+                <select asp-for="Menu.LocationID" class="form-control" asp-items="ViewBag.LocationID">
+                </select>
+                <span asp-validation-for="Menu.LocationID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+ <div class="table">
+ <table>
+ <tr>
+ @{
+ int cnt = 0;
+ foreach (var cat in Model.CuisineDataList)
+ {
+ if (cnt++ % 3 == 0)
+ {
+ @:</tr><tr>
+ }
+@:<td>
+ <input type="checkbox"
+ name="selectedCuisines"
+value="@cat.CuisineID"
+ @(Html.Raw(cat.Assigned ?
+"checked=\"checked\"" : "")) />
+ @cat.CuisineID @: @cat.Name
+ @:</td>
+ }
+ @:</tr>
+ }
+ </table>
+ </div>
+ </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
