@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppWeb.Data;
 using AppWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppWeb.Pages.Dishes
 {
+    [Authorize(Roles = "Admin")]
+
     public class EditModel : DishCuisinePageModel
     {
         private readonly AppWeb.Data.AppWebContext _context;

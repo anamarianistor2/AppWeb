@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AppWeb.Data;
 using AppWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppWeb.Pages.Dishes
 {
+    [Authorize(Roles = "Admin")]
+
     public class CreateModel : DishCuisinePageModel
     {
         private readonly AppWeb.Data.AppWebContext _context;

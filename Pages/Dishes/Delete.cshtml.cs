@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppWeb.Data;
 using AppWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppWeb.Pages.Dishes
 {
+    [Authorize(Roles = "Admin")]
+
     public class DeleteModel : PageModel
     {
         private readonly AppWeb.Data.AppWebContext _context;
